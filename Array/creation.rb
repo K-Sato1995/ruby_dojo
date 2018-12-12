@@ -19,3 +19,6 @@ p arr4 #=> [1, 2, 3]
 ## (5)Array.new(num) {}
 arr5 = Array.new(3) { |a| a * 3 }
 p arr5 #=> [0, 3, 6]
+
+
+['a' ,'b'].map(&:upcase)
