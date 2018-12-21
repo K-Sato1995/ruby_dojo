@@ -1,4 +1,7 @@
 # Getting keys and values from hashes
+p h1 = { 'key1 '=> 'value1', 'key2' => 'value2'} #=> {'key1 '=>'value1', 'key2'=>'value2'}
+p h2 = { :name => 'K-Sato', age: 23 }
+
 p h1['key1'] #=> nil
 p h2[:name] #=> 'K-Sato'
 p h1.keys #=> ['key1 ', 'key2']
