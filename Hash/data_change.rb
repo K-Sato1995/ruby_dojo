@@ -1,4 +1,5 @@
-# Data mutation
+# Add, delete and replace keys and values of hashes
+
 h = { :name => 'K-Sato', age: 23 }
 h2 = { name: 'K-Sato', age: 23 }
 

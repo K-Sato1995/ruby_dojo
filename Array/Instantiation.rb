@@ -1,4 +1,4 @@
-# Creating arrays
+# Instantiating arrays
 
 ## (1) []
 arr = [1, 2, 3]

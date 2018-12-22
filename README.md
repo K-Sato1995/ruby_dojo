@@ -334,7 +334,34 @@ p str2.intern #=> :string
 ```
 # Array(1)
 ```
-# Creating arrays
+# Add elements to an array
+
+array = [0, 1, 2, 3, 4]
+
+## Bang Method
+p array << 5 #=> [0, 1, 2, 3, 4, 5]
+p array.push(6) #=> [0, 1, 2, 3, 4, 5, 6]
+p array.unshift(-1) #=> [-1, 0, 1, 2, 3, 4, 5, 6]
+p array.concat([7, 8]) #=> [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
+p array.insert(10, 9) #=> [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9] # insert(index, value)
+
+## Non Bang Method
+p array + [10]
+```
+# Array(2)
+```
+# Change the elements of an array
+
+arr = ['dog', 'cat', 'pig']
+p arr[0] = 'Dog' #Bang Method
+p arr #=> ["Dog", "cat", "pig"]
+p arr.fill('bird', 3..7) #=> "Dog", "cat", "pig", "bird", "bird", "bird", "bird", "bird"]
+p arr.replace([1,2,3]) #=> [1, 2, 3]
+p [[:name, 'k-sato'], [:age, 23]].to_h #=> {:name=>"k-sato", :age=>23}
+```
+# Array(3)
+```
+# Instantiating arrays
 
 ## (1) []
 arr = [1, 2, 3]
@@ -356,9 +383,32 @@ p arr4 #=> [1, 2, 3]
 arr5 = Array.new(3) { |a| a * 3 }
 p arr5 #=> [0, 3, 6]
 ```
+# Array(4)
+```
+# Referencing elements of an array
+
+arr = ['Dog', 'Cat', 'Bird', 'Cow']
+p arr[0] #=> 'Dog'
+p arr.at(0) #=> 'Dog'
+p arr.values_at(1..2) #=> ["Cat", "Bird"]
+p arr.fetch(0) #=> 'Dog'
+p arr.first(1) #=> ['Dog']
+p arr.last(1) #=> ['Cow']
+
+
+arr_arr = [[1, 2], [3, 4]]
+p arr_arr.assoc(1) #=> [1, 2]
+p arr_arr.assoc(2) #=> nil
+=begin
+Searches through an array whose elements are also arrays comparing obj with the first element of each contained array using obj.==.
+=end
+p arr_arr.rassoc(4) #=> [3, 4]
+p arr_arr.rassoc(3) #=> nil
+```
 # Hash(1)
 ```
-# Data mutation
+# Add, delete and replace keys and values of hashes
+
 h = { :name => 'K-Sato', age: 23 }
 h2 = { name: 'K-Sato', age: 23 }
 
