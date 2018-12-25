@@ -1,14 +1,182 @@
 # Ruby Dojo
-# Variables(1)
+# Array(1)
+```ruby
+# Add elements to an array
+
+array = [0, 1, 2, 3, 4]
+
+## Bang Method
+p array << 5 #=> [0, 1, 2, 3, 4, 5]
+p array.push(6) #=> [0, 1, 2, 3, 4, 5, 6]
+p array.unshift(-1) #=> [-1, 0, 1, 2, 3, 4, 5, 6]
+p array.concat([7, 8]) #=> [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
+p array.insert(10, 9) #=> [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9] # insert(index, value)
+
+## Non Bang Method
+p array + [10]
 ```
-# Local variable
-# It can not start with a number
-# But it can start with _(underbar)
-_1 = 'A local variable can start with _'
-p _1 #=> 'A local variable can start with _'
+# Array(2)
+```ruby
+# Change the elements of an array
+
+arr = ['dog', 'cat', 'pig']
+p arr[0] = 'Dog' #Bang Method
+p arr #=> ["Dog", "cat", "pig"]
+p arr.fill('bird', 3..7) #=> "Dog", "cat", "pig", "bird", "bird", "bird", "bird", "bird"]
+p arr.replace([1,2,3]) #=> [1, 2, 3]
+p [[:name, 'k-sato'], [:age, 23]].to_h #=> {:name=>"k-sato", :age=>23}
+```
+# Array(3)
+```ruby
+# Instantiating arrays
+
+## (1) []
+arr = [1, 2, 3]
+p arr #=> [1, 2, 3]
+
+## (2) Array
+arr2 = Array[1, 2, 3]
+p arr2 #=> [1, 2, 3]
+
+## (3) Array.new(arg1, arg2)
+arr3 = Array.new(3, 'string')
+p arr3 #=> ["string", "string", "string"]
+
+## (4) Array.new([])
+arr4 = Array.new([1, 2, 3])
+p arr4 #=> [1, 2, 3]
+
+## (5)Array.new(num) {}
+arr5 = Array.new(3) { |a| a * 3 }
+p arr5 #=> [0, 3, 6]
+```
+# Array(4)
+```ruby
+# Referencing elements of an array
+
+arr = ['Dog', 'Cat', 'Bird', 'Cow']
+p arr[0] #=> 'Dog'
+p arr.at(0) #=> 'Dog'
+p arr.values_at(1..2) #=> ["Cat", "Bird"]
+p arr.fetch(0) #=> 'Dog'
+p arr.first(1) #=> ['Dog']
+p arr.last(1) #=> ['Cow']
+
+
+arr_arr = [[1, 2], [3, 4]]
+p arr_arr.assoc(1) #=> [1, 2]
+p arr_arr.assoc(2) #=> nil
+=begin
+Searches through an array whose elements are also arrays comparing obj with the first element of each contained array using obj.==.
+=end
+p arr_arr.rassoc(4) #=> [3, 4]
+p arr_arr.rassoc(3) #=> nil
+```
+# Hash(1)
+```ruby
+# Add, delete and replace keys and values of hashes
+
+h = { :name => 'K-Sato', age: 23 }
+h2 = { name: 'K-Sato', age: 23 }
+
+## Non Bang Methods
+p h2.reject { |key, value| key == :name } #=> {:age=>23}
+p h2.merge({nationality: 'JP'}) #=> {:name=>"K-Sato", :age=>23, :nationality=>"JP"}
+p h2.invert #=> {"K-Sato"=>:name, 23=>:age}
+p h2.to_a #=> [[:name, "K-Sato"], [:age, 23]]
+p h2.to_s #=> "{:name=>\"K-Sato\", :age=>23}"
+
+## Bang Methods
+h[:name] = 'Sam'
+p h.delete(:name) #=> "Sam"
+p h2.delete_if { |key, value| key == :name } #=> {:age=>23}
+p h2.replace({name: 'John', age: 50}) #=> {:name=>"John", :age=>50}
+p h2.shift #=> [:name, "John"]
+p h2.update({nationality: 'JP'}) #=> {:age=>50, :nationality=>"JP"}
+p h2.clear #=> {}
+```
+# Hash(2)
+```ruby
+# Hash Inspection
+hash = { name: 'K-Sato', age: 24 }
+p hash.length #=> 2
+p hash.size #=> 2
+p hash.empty? #=> false
+p hash.key?(:name) #=> true
+p hash.has_key?(:age) #=> true
+p hash.include?('K-Sato') #=> false # It checks keys of a hash
+p hash.member?(:name) #=> true
+p hash.value?(24) #=> true
+p hash.has_value?(24) #=> true
+```
+# Hash(3)
+```ruby
+# Hash Formatting
+p h1 = { 'key1 '=> 'value1', 'key2' => 'value2'} #=> {'key1 '=>'value1', 'key2'=>'value2'}
+p h2 = { :name => 'K-Sato', age: 23 } #=> {:name=>'K-Sato', :age=>23}
+p h3 = { name: 'K-Sato', age: 23 } #=> {:name=>'K-Sato', :age=>23}
+
+# How to create hashes in Ruby
+## (1)
+p h4 = Hash.new(6) #=> {}
+p h4[:key] #=> 6
+
+## (2)
+p h5 = Hash({}) #=> {}
+p h6 = Hash[] #=> {}
+p Hash['Name', 'K-Sato', 'Age', 23] #=> {'Name'=>'K-Sato', 'Age'=>23}
+
+## (3)
+p h7 = Hash.new { |hash, key| hash[key] = 'value'} #=> {}
+
+## (4)
+p [['Name', 'K-Sato'], ['Age', 23]].to_h #=> {'Name'=>'K-Sato', 'Age'=>23}
+```
+# Hash(4)
+```ruby
+# Hash Iteration
+hash = { name: 'K-Sato', age: 24 }
+hash.each{ |key, value| p "#{key} + #{value}" }
+#=>"name + K-Sato"
+#=>"age + 24"
+hash.each_pair{ |key, value| p "#{key} + #{value}" }
+#=>"name + K-Sato"
+#=>"age + 24"
+hash.each_key { |key| p "#{key}" }
+#=>"name"
+#=>"age"
+hash.each_value { |value| p "#{value}" }
+#=>"K-Sato"
+#=>"24"
+```
+# Hash(5)
+```ruby
+# Getting keys and values from hashes
+p h1 = { 'key1 '=> 'value1', 'key2' => 'value2'} #=> {'key1 '=>'value1', 'key2'=>'value2'}
+p h2 = { :name => 'K-Sato', age: 23 }
+
+p h1['key1'] #=> nil
+p h2[:name] #=> 'K-Sato'
+p h1.keys #=> ['key1 ', 'key2']
+p h1.values #=> ['value1', 'value2']
+p h1.values_at('key1 ', 'key2') #=> ['value1', 'value2']
+p h1.fetch('key1', 'not found') #=> not found
+p h2.fetch(:name, 'not found') #=> "K-Sato"
+p h2.select { |key, value| key == :name } #=> {:name=>"K-Sato"} # It returns the data as a hash
+p h2.find_all { |key, value| key == :name } #=> [[:name, "K-Sato"]] # It returns the data as an array of arrays
+p h1.select { |key, value| key == 'key1' } #=> {}
+p h1.find_all { |key, value| key == 'key1' }  #=> []
+```
+# Hash(6)
+```ruby
+# Hash Sorting
+hash = { num2: 5, num1: 2, num3: 3 }
+
+# Uses keys to sort a hash
+p hash.sort #=> [[:num1, 2], [:num2, 5], [:num3, 3]]
 ```
 # String(1)
-```
+```ruby
 # Encoding
 
 ## Basic
@@ -54,7 +222,7 @@ p str === str2 #=> true
 p str.eql?(str2) #=> true
 ```
 # String(2)
-```
+```ruby
 # Encoding
 
 ## Basic
@@ -67,7 +235,7 @@ str.encode!('EUC-JP')
 p str.encoding #=> #<Encoding:EUC-JP>
 ```
 # String(3)
-```
+```ruby
 str = 'abcdefg'
 
 ## split
@@ -105,7 +273,7 @@ p str2.insert(-1, 'G') #=> "ABdefgG"
 p str2 #=> "ABdefgG"
 ```
 # String(4)
-```
+```ruby
 # Replacing strings
 ## sub
 str = 'abcdefg'
@@ -145,7 +313,7 @@ p str6.replace('ABC') #=> "ABC"
 p str6 #=> "ABC"
 ```
 # String(5)
-```
+```ruby
 # Connecting two strings
 ## +
 str1 = 'A'
@@ -242,7 +410,7 @@ puts str4 #=> string
 puts str4.dump #=> "string\n\t"
 ```
 # String(6)
-```
+```ruby
 # Searching strings
 str = 'abcdefgb'
 
@@ -303,7 +471,7 @@ p str.chars #=> ["s", "t", "\n", "r", "i", "n", "g", "\n", "b", "u", "i", "l", "
 #   c
 ```
 # String(7)
-```
+```ruby
 # Changing a string to another object
 str = '10'
 str2 = 'string'
@@ -332,179 +500,11 @@ p str2.to_sym #=> :string
 p str.intern #=> :"10"
 p str2.intern #=> :string
 ```
-# Array(1)
-```
-# Add elements to an array
-
-array = [0, 1, 2, 3, 4]
-
-## Bang Method
-p array << 5 #=> [0, 1, 2, 3, 4, 5]
-p array.push(6) #=> [0, 1, 2, 3, 4, 5, 6]
-p array.unshift(-1) #=> [-1, 0, 1, 2, 3, 4, 5, 6]
-p array.concat([7, 8]) #=> [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
-p array.insert(10, 9) #=> [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9] # insert(index, value)
-
-## Non Bang Method
-p array + [10]
-```
-# Array(2)
-```
-# Change the elements of an array
-
-arr = ['dog', 'cat', 'pig']
-p arr[0] = 'Dog' #Bang Method
-p arr #=> ["Dog", "cat", "pig"]
-p arr.fill('bird', 3..7) #=> "Dog", "cat", "pig", "bird", "bird", "bird", "bird", "bird"]
-p arr.replace([1,2,3]) #=> [1, 2, 3]
-p [[:name, 'k-sato'], [:age, 23]].to_h #=> {:name=>"k-sato", :age=>23}
-```
-# Array(3)
-```
-# Instantiating arrays
-
-## (1) []
-arr = [1, 2, 3]
-p arr #=> [1, 2, 3]
-
-## (2) Array
-arr2 = Array[1, 2, 3]
-p arr2 #=> [1, 2, 3]
-
-## (3) Array.new(arg1, arg2)
-arr3 = Array.new(3, 'string')
-p arr3 #=> ["string", "string", "string"]
-
-## (4) Array.new([])
-arr4 = Array.new([1, 2, 3])
-p arr4 #=> [1, 2, 3]
-
-## (5)Array.new(num) {}
-arr5 = Array.new(3) { |a| a * 3 }
-p arr5 #=> [0, 3, 6]
-```
-# Array(4)
-```
-# Referencing elements of an array
-
-arr = ['Dog', 'Cat', 'Bird', 'Cow']
-p arr[0] #=> 'Dog'
-p arr.at(0) #=> 'Dog'
-p arr.values_at(1..2) #=> ["Cat", "Bird"]
-p arr.fetch(0) #=> 'Dog'
-p arr.first(1) #=> ['Dog']
-p arr.last(1) #=> ['Cow']
-
-
-arr_arr = [[1, 2], [3, 4]]
-p arr_arr.assoc(1) #=> [1, 2]
-p arr_arr.assoc(2) #=> nil
-=begin
-Searches through an array whose elements are also arrays comparing obj with the first element of each contained array using obj.==.
-=end
-p arr_arr.rassoc(4) #=> [3, 4]
-p arr_arr.rassoc(3) #=> nil
-```
-# Hash(1)
-```
-# Add, delete and replace keys and values of hashes
-
-h = { :name => 'K-Sato', age: 23 }
-h2 = { name: 'K-Sato', age: 23 }
-
-## Non Bang Methods
-p h2.reject { |key, value| key == :name } #=> {:age=>23}
-p h2.merge({nationality: 'JP'}) #=> {:name=>"K-Sato", :age=>23, :nationality=>"JP"}
-p h2.invert #=> {"K-Sato"=>:name, 23=>:age}
-p h2.to_a #=> [[:name, "K-Sato"], [:age, 23]]
-p h2.to_s #=> "{:name=>\"K-Sato\", :age=>23}"
-
-## Bang Methods
-h[:name] = 'Sam'
-p h.delete(:name) #=> "Sam"
-p h2.delete_if { |key, value| key == :name } #=> {:age=>23}
-p h2.replace({name: 'John', age: 50}) #=> {:name=>"John", :age=>50}
-p h2.shift #=> [:name, "John"]
-p h2.update({nationality: 'JP'}) #=> {:age=>50, :nationality=>"JP"}
-p h2.clear #=> {}
-```
-# Hash(2)
-```
-# Hash Inspection
-hash = { name: 'K-Sato', age: 24 }
-p hash.length #=> 2
-p hash.size #=> 2
-p hash.empty? #=> false
-p hash.key?(:name) #=> true
-p hash.has_key?(:age) #=> true
-p hash.include?('K-Sato') #=> false # It checks keys of a hash
-p hash.member?(:name) #=> true
-p hash.value?(24) #=> true
-p hash.has_value?(24) #=> true
-```
-# Hash(3)
-```
-# Hash Formatting
-p h1 = { 'key1 '=> 'value1', 'key2' => 'value2'} #=> {'key1 '=>'value1', 'key2'=>'value2'}
-p h2 = { :name => 'K-Sato', age: 23 } #=> {:name=>'K-Sato', :age=>23}
-p h3 = { name: 'K-Sato', age: 23 } #=> {:name=>'K-Sato', :age=>23}
-
-# How to create hashes in Ruby
-## (1)
-p h4 = Hash.new(6) #=> {}
-p h4[:key] #=> 6
-
-## (2)
-p h5 = Hash({}) #=> {}
-p h6 = Hash[] #=> {}
-p Hash['Name', 'K-Sato', 'Age', 23] #=> {'Name'=>'K-Sato', 'Age'=>23}
-
-## (3)
-p h7 = Hash.new { |hash, key| hash[key] = 'value'} #=> {}
-
-## (4)
-p [['Name', 'K-Sato'], ['Age', 23]].to_h #=> {'Name'=>'K-Sato', 'Age'=>23}
-```
-# Hash(4)
-```
-# Hash Iteration
-hash = { name: 'K-Sato', age: 24 }
-hash.each{ |key, value| p "#{key} + #{value}" }
-#=>"name + K-Sato"
-#=>"age + 24"
-hash.each_pair{ |key, value| p "#{key} + #{value}" }
-#=>"name + K-Sato"
-#=>"age + 24"
-hash.each_key { |key| p "#{key}" }
-#=>"name"
-#=>"age"
-hash.each_value { |value| p "#{value}" }
-#=>"K-Sato"
-#=>"24"
-```
-# Hash(5)
-```
-# Getting keys and values from hashes
-p h1 = { 'key1 '=> 'value1', 'key2' => 'value2'} #=> {'key1 '=>'value1', 'key2'=>'value2'}
-p h2 = { :name => 'K-Sato', age: 23 }
-
-p h1['key1'] #=> nil
-p h2[:name] #=> 'K-Sato'
-p h1.keys #=> ['key1 ', 'key2']
-p h1.values #=> ['value1', 'value2']
-p h1.values_at('key1 ', 'key2') #=> ['value1', 'value2']
-p h1.fetch('key1', 'not found') #=> not found
-p h2.fetch(:name, 'not found') #=> "K-Sato"
-p h2.select { |key, value| key == :name } #=> {:name=>"K-Sato"} # It returns the data as a hash
-p h2.find_all { |key, value| key == :name } #=> [[:name, "K-Sato"]] # It returns the data as an array of arrays
-p h1.select { |key, value| key == 'key1' } #=> {}
-p h1.find_all { |key, value| key == 'key1' }  #=> []
-```
-# Hash(6)
-```
-# Hash Sorting
-hash = { num2: 5, num1: 2, num3: 3 }
-
-# Uses keys to sort a hash
-p hash.sort #=> [[:num1, 2], [:num2, 5], [:num3, 3]]
+# variables(1)
+```ruby
+# Local variable
+# It can not start with a number
+# But it can start with _(underbar)
+_1 = 'A local variable can start with _'
+p _1 #=> 'A local variable can start with _'
 ```
