@@ -1,6 +1,6 @@
 # Ruby Dojo
 
-# Array(1)
+# Array(1) Add elements
 
 ```ruby
 # Add elements to an array
@@ -18,7 +18,7 @@ p array.insert(10, 9) #=> [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9] # insert(index, val
 p array + [10]
 ```
 
-# Array(2)
+# Array(2) Change elements
 
 ```ruby
 # Change the elements of an array
@@ -76,7 +76,7 @@ p arr3*2 #=> [1, 2, 1, 2]
 p [[1,2,3],[4,5,6]].transpose #=> [[1, 4], [2, 5], [3, 6]]
 ```
 
-# Array(3)
+# Array(3) Check elements
 
 ```ruby
 # Checking the elements of arrays
@@ -115,7 +115,7 @@ p [1,2] <=> [2,3] #=> -1
 p [2,3] <=> [1,2] #=> 1
 ```
 
-# Array(4)
+# Array(4) Delete elements
 
 ```ruby
 arr = [1,2,3,4,5]
@@ -176,7 +176,7 @@ arr3.each_cons(2){|arr| p arr}
 #=> [4, 5]
 ```
 
-# Array(5)
+# Array(5) Instantiation
 
 ```ruby
 # Instantiating arrays
@@ -202,7 +202,7 @@ arr5 = Array.new(3) { |a| a * 3 }
 p arr5 #=> [0, 3, 6]
 ```
 
-# Array(6)
+# Array(6) Iterate elements
 
 ```ruby
 arr = ['dog', 'cat', 'bird']
@@ -239,7 +239,7 @@ arr.collect { |ele| p ele }
 #=> "dog" "cat" "bird"
 ```
 
-# Array(7)
+# Array(7) Reference elements
 
 ```ruby
 # Referencing elements of an array
@@ -274,7 +274,7 @@ p arr_arr.rassoc(4) #=> [3, 4]
 p arr_arr.rassoc(3) #=> nil
 ```
 
-# Hash(1)
+# Hash(1) Data change
 
 ```ruby
 # Add, delete and replace keys and values of hashes
@@ -299,7 +299,7 @@ p h2.update({nationality: 'JP'}) #=> {:age=>50, :nationality=>"JP"}
 p h2.clear #=> {}
 ```
 
-# Hash(2)
+# Hash(2) Inspection
 
 ```ruby
 # Hash Inspection
@@ -315,7 +315,7 @@ p hash.value?(24) #=> true
 p hash.has_value?(24) #=> true
 ```
 
-# Hash(3)
+# Hash(3) Instantiation
 
 ```ruby
 # Hash Formatting
@@ -340,7 +340,7 @@ p h7 = Hash.new { |hash, key| hash[key] = 'value'} #=> {}
 p [['Name', 'K-Sato'], ['Age', 23]].to_h #=> {'Name'=>'K-Sato', 'Age'=>23}
 ```
 
-# Hash(4)
+# Hash(4) Iteration
 
 ```ruby
 # Hash Iteration
@@ -359,7 +359,7 @@ hash.each_value { |value| p "#{value}" }
 #=>"24"
 ```
 
-# Hash(5)
+# Hash(5) Keys values
 
 ```ruby
 # Getting keys and values from hashes
@@ -379,7 +379,7 @@ p h1.select { |key, value| key == 'key1' } #=> {}
 p h1.find_all { |key, value| key == 'key1' }  #=> []
 ```
 
-# Hash(6)
+# Hash(6) Sort
 
 ```ruby
 # Hash Sorting
@@ -389,7 +389,7 @@ hash = { num2: 5, num1: 2, num3: 3 }
 p hash.sort #=> [[:num1, 2], [:num2, 5], [:num3, 3]]
 ```
 
-# String(1)
+# String(1) Comparison
 
 ```ruby
 # Encoding
@@ -437,7 +437,7 @@ p str === str2 #=> true
 p str.eql?(str2) #=> true
 ```
 
-# String(2)
+# String(2) Encoding
 
 ```ruby
 # Encoding
@@ -452,7 +452,7 @@ str.encode!('EUC-JP')
 p str.encoding #=> #<Encoding:EUC-JP>
 ```
 
-# String(3)
+# String(3) Operation
 
 ```ruby
 str = 'abcdefg'
@@ -492,7 +492,7 @@ p str2.insert(-1, 'G') #=> "ABdefgG"
 p str2 #=> "ABdefgG"
 ```
 
-# String(4)
+# String(4) Operation2
 
 ```ruby
 # Replacing strings
@@ -534,7 +534,7 @@ p str6.replace('ABC') #=> "ABC"
 p str6 #=> "ABC"
 ```
 
-# String(5)
+# String(5) Operation3
 
 ```ruby
 # Connecting two strings
@@ -633,7 +633,7 @@ puts str4 #=> string
 puts str4.dump #=> "string\n\t"
 ```
 
-# String(6)
+# String(6) Operation4
 
 ```ruby
 # Searching strings
@@ -696,7 +696,7 @@ p str.chars #=> ["s", "t", "\n", "r", "i", "n", "g", "\n", "b", "u", "i", "l", "
 #   c
 ```
 
-# String(7)
+# String(7) Operation5
 
 ```ruby
 # Changing a string to another object
@@ -728,7 +728,7 @@ p str.intern #=> :"10"
 p str2.intern #=> :string
 ```
 
-# variables(1)
+# variables(1) Variables
 
 ```ruby
 # Local variable
@@ -737,3 +737,4 @@ p str2.intern #=> :string
 _1 = 'A local variable can start with _'
 p _1 #=> 'A local variable can start with _'
 ```
+
