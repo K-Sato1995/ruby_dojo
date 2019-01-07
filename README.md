@@ -1,5 +1,6 @@
 # Ruby Dojo
 # Array(1)
+
 ```ruby
 # Add elements to an array
 
@@ -16,17 +17,162 @@ p array.insert(10, 9) #=> [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9] # insert(index, val
 p array + [10]
 ```
 # Array(2)
+
 ```ruby
 # Change the elements of an array
-
 arr = ['dog', 'cat', 'pig']
+
+# []
 p arr[0] = 'Dog' #Bang Method
 p arr #=> ["Dog", "cat", "pig"]
+
+# fill
 p arr.fill('bird', 3..7) #=> "Dog", "cat", "pig", "bird", "bird", "bird", "bird", "bird"]
+
+# replace
 p arr.replace([1,2,3]) #=> [1, 2, 3]
+
+# to_h
 p [[:name, 'k-sato'], [:age, 23]].to_h #=> {:name=>"k-sato", :age=>23}
+
+# join
+p arr.join('-') #=> "1-2-3"
+
+arr2 = [3,2,1,3,2,1]
+
+# sort
+p arr2.sort #=> [1, 1, 2, 2, 3, 3]
+
+# uniq
+p arr2.uniq #=> [3, 2, 1]
+
+# compact
+arr2.concat([4, nil])
+p arr2.compact #=> [3, 2, 1, 3, 2, 1, 4]
+
+# reverse
+p arr2 #=> [3, 2, 1, 3, 2, 1, 4, nil]
+
+# flatten
+p [[1,2], [3,4]].flatten #=> [1, 2, 3, 4]
+
+# shuffle
+p arr2.shuffle
+
+arr3 = [1,2]
+
+# product
+p arr3.product([3,4]) #=> [[1, 3], [1, 4], [2, 3], [2, 4]]
+
+# zip
+p arr3.zip([3,4]) #=> [[1, 3], [2, 4]]
+
+# *
+p arr3*2 #=> [1, 2, 1, 2]
+
+# transpose
+p [[1,2,3],[4,5,6]].transpose #=> [[1, 4], [2, 5], [3, 6]]
 ```
 # Array(3)
+
+```ruby
+# Checking the elements of arrays
+arr = ['dog', 'cat', 'bird']
+
+# include?
+p arr.include?('dog') #=> true
+
+# size
+p arr.size #=> 3
+# length
+p arr.length #=> 3
+# count
+p arr.count #=> 3
+
+# index
+# 指定された値と==で等しい値を探し、そのインデックスを返す。
+p arr.index('bird') #=> 2
+
+# rindex
+# 指定された値を右方向から検索し、最初に見つかった値のインデックスを返す。
+p arr.rindex('bird') #=> 2
+
+# |
+p [1,2,3] | [2,3] #=> [1, 2, 3]
+
+# &
+p [1,2,3] & [2,3] #=> [2, 3]
+
+# ==
+p [1,2] == [2,3] #=> false
+p [1,2] == [1,2] #=> true
+
+# <=>
+p [1,2] <=> [2,3] #=> -1
+p [2,3] <=> [1,2] #=> 1
+```
+# Array(4)
+
+```ruby
+arr = [1,2,3,4,5]
+
+### Bang Mehods
+# (1) delete_at
+p arr.delete_at(2) #=> 3
+p arr #=> [1, 2, 4, 5]
+
+# (2) delete_if
+p arr.delete_if { |ele| ele%2 == 0 } #=> [1, 5]
+p arr #=> [1, 5]
+
+# (3)delete
+p arr.delete(5) #=> 5
+p arr #=> [1]
+
+# (4)clear
+p arr.clear #=> []
+p arr #=> []
+
+arr2 = [1,2,3,4,5]
+# (5) shift
+p arr2.shift #=> 1
+p arr2 #=> [2, 3, 4, 5]
+
+# (6) pop
+p arr2.pop #=> 5
+p arr2 #=> [2, 3, 4]
+
+
+### Non Bang Methods (can be a bang method with !)
+arr3 = [1,2,3,4,5]
+
+# (1) reject
+p arr3.reject{ |ele| ele%2 == 0 } #=> [1, 3, 5]
+p arr3 #=> [1, 2, 3, 4, 5]
+
+# (2) slice
+p arr3.slice(1,3) #=> [2, 3, 4]
+p arr3 #=> [1, 2, 3, 4, 5]
+
+# (3) -
+p arr3 - [1,2] #=> [3, 4, 5]
+p arr3 #=> [1, 2, 3, 4, 5]
+
+# (4) each_slice
+arr3.each_slice(2){|arr| p arr}
+#=> [1, 2]
+#=> [3, 4]
+#=> [5]
+
+# (5) each_cons
+arr3.each_cons(2){|arr| p arr}
+#=> [1, 2]
+#=> [2, 3]
+#=> [3, 4]
+#=> [4, 5]
+```
+# Array(5)
+
 ```ruby
 # Instantiating arrays
 
@@ -50,29 +196,78 @@ p arr4 #=> [1, 2, 3]
 arr5 = Array.new(3) { |a| a * 3 }
 p arr5 #=> [0, 3, 6]
 ```
-# Array(4)
+# Array(6)
+
+```ruby
+arr = ['dog', 'cat', 'bird']
+
+# each
+arr.each { |ele| p ele }
+#=> "dog" "cat" "bird"
+
+# each_index
+arr.each_index { |ind| p ind }
+#=> 0 1 2
+
+# cycle(keep iterating)
+# arr.cycle { |ele| p ele }
+
+# reverse_each
+arr.reverse_each { |ele| p ele }
+#=> "bird" "cat" "dog"
+
+# each_with_index
+arr.each_with_index { |ele, i| p "#{i}#{ele}"}
+#=> "0dog" "1cat" "2bird"
+
+# each.with_index()
+arr.each.with_index(1) { |ele, i| p "#{i}#{ele}"}
+#=> "1dog" "2cat" "3bird"
+
+# map
+arr.map { |ele| p ele }
+#=> "dog" "cat" "bird"
+
+# collect
+arr.collect { |ele| p ele }
+#=> "dog" "cat" "bird"
+```
+# Array(7)
+
 ```ruby
 # Referencing elements of an array
 
 arr = ['Dog', 'Cat', 'Bird', 'Cow']
+# []
 p arr[0] #=> 'Dog'
+
+# at
 p arr.at(0) #=> 'Dog'
+
+# values_at
 p arr.values_at(1..2) #=> ["Cat", "Bird"]
+
+# fetch
 p arr.fetch(0) #=> 'Dog'
+
+# first
 p arr.first(1) #=> ['Dog']
+
+# last
 p arr.last(1) #=> ['Cow']
 
-
 arr_arr = [[1, 2], [3, 4]]
+
+# assoc (Searches through an array whose elements are also arrays comparing obj with the first element of each contained array using obj.==.)
 p arr_arr.assoc(1) #=> [1, 2]
 p arr_arr.assoc(2) #=> nil
-=begin
-Searches through an array whose elements are also arrays comparing obj with the first element of each contained array using obj.==.
-=end
+
+# rassoc
 p arr_arr.rassoc(4) #=> [3, 4]
 p arr_arr.rassoc(3) #=> nil
 ```
 # Hash(1)
+
 ```ruby
 # Add, delete and replace keys and values of hashes
 
@@ -96,6 +291,7 @@ p h2.update({nationality: 'JP'}) #=> {:age=>50, :nationality=>"JP"}
 p h2.clear #=> {}
 ```
 # Hash(2)
+
 ```ruby
 # Hash Inspection
 hash = { name: 'K-Sato', age: 24 }
@@ -110,6 +306,7 @@ p hash.value?(24) #=> true
 p hash.has_value?(24) #=> true
 ```
 # Hash(3)
+
 ```ruby
 # Hash Formatting
 p h1 = { 'key1 '=> 'value1', 'key2' => 'value2'} #=> {'key1 '=>'value1', 'key2'=>'value2'}
@@ -133,6 +330,7 @@ p h7 = Hash.new { |hash, key| hash[key] = 'value'} #=> {}
 p [['Name', 'K-Sato'], ['Age', 23]].to_h #=> {'Name'=>'K-Sato', 'Age'=>23}
 ```
 # Hash(4)
+
 ```ruby
 # Hash Iteration
 hash = { name: 'K-Sato', age: 24 }
@@ -150,6 +348,7 @@ hash.each_value { |value| p "#{value}" }
 #=>"24"
 ```
 # Hash(5)
+
 ```ruby
 # Getting keys and values from hashes
 p h1 = { 'key1 '=> 'value1', 'key2' => 'value2'} #=> {'key1 '=>'value1', 'key2'=>'value2'}
@@ -168,6 +367,7 @@ p h1.select { |key, value| key == 'key1' } #=> {}
 p h1.find_all { |key, value| key == 'key1' }  #=> []
 ```
 # Hash(6)
+
 ```ruby
 # Hash Sorting
 hash = { num2: 5, num1: 2, num3: 3 }
@@ -176,6 +376,7 @@ hash = { num2: 5, num1: 2, num3: 3 }
 p hash.sort #=> [[:num1, 2], [:num2, 5], [:num3, 3]]
 ```
 # String(1)
+
 ```ruby
 # Encoding
 
@@ -222,6 +423,7 @@ p str === str2 #=> true
 p str.eql?(str2) #=> true
 ```
 # String(2)
+
 ```ruby
 # Encoding
 
@@ -235,6 +437,7 @@ str.encode!('EUC-JP')
 p str.encoding #=> #<Encoding:EUC-JP>
 ```
 # String(3)
+
 ```ruby
 str = 'abcdefg'
 
@@ -273,6 +476,7 @@ p str2.insert(-1, 'G') #=> "ABdefgG"
 p str2 #=> "ABdefgG"
 ```
 # String(4)
+
 ```ruby
 # Replacing strings
 ## sub
@@ -313,6 +517,7 @@ p str6.replace('ABC') #=> "ABC"
 p str6 #=> "ABC"
 ```
 # String(5)
+
 ```ruby
 # Connecting two strings
 ## +
@@ -410,6 +615,7 @@ puts str4 #=> string
 puts str4.dump #=> "string\n\t"
 ```
 # String(6)
+
 ```ruby
 # Searching strings
 str = 'abcdefgb'
@@ -471,6 +677,7 @@ p str.chars #=> ["s", "t", "\n", "r", "i", "n", "g", "\n", "b", "u", "i", "l", "
 #   c
 ```
 # String(7)
+
 ```ruby
 # Changing a string to another object
 str = '10'
@@ -501,6 +708,7 @@ p str.intern #=> :"10"
 p str2.intern #=> :string
 ```
 # variables(1)
+
 ```ruby
 # Local variable
 # It can not start with a number

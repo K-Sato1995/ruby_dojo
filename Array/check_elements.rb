@@ -4,6 +4,13 @@ arr = ['dog', 'cat', 'bird']
 # include?
 p arr.include?('dog') #=> true
 
+# size
+p arr.size #=> 3
+# length
+p arr.length #=> 3
+# count
+p arr.count #=> 3
+
 # index
 # 指定された値と==で等しい値を探し、そのインデックスを返す。
 p arr.index('bird') #=> 2

@@ -22,3 +22,11 @@ arr.each_with_index { |ele, i| p "#{i}#{ele}"}
 # each.with_index()
 arr.each.with_index(1) { |ele, i| p "#{i}#{ele}"}
 #=> "1dog" "2cat" "3bird"
+
+# map
+arr.map { |ele| p ele }
+#=> "dog" "cat" "bird"
+
+# collect
+arr.collect { |ele| p ele }
+#=> "dog" "cat" "bird"
