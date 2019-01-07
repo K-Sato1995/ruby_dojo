@@ -1,4 +1,5 @@
 # Ruby Dojo
+
 # Array(1)
 
 ```ruby
@@ -16,6 +17,7 @@ p array.insert(10, 9) #=> [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9] # insert(index, val
 ## Non Bang Method
 p array + [10]
 ```
+
 # Array(2)
 
 ```ruby
@@ -73,6 +75,7 @@ p arr3*2 #=> [1, 2, 1, 2]
 # transpose
 p [[1,2,3],[4,5,6]].transpose #=> [[1, 4], [2, 5], [3, 6]]
 ```
+
 # Array(3)
 
 ```ruby
@@ -111,6 +114,7 @@ p [1,2] == [1,2] #=> true
 p [1,2] <=> [2,3] #=> -1
 p [2,3] <=> [1,2] #=> 1
 ```
+
 # Array(4)
 
 ```ruby
@@ -171,6 +175,7 @@ arr3.each_cons(2){|arr| p arr}
 #=> [3, 4]
 #=> [4, 5]
 ```
+
 # Array(5)
 
 ```ruby
@@ -196,6 +201,7 @@ p arr4 #=> [1, 2, 3]
 arr5 = Array.new(3) { |a| a * 3 }
 p arr5 #=> [0, 3, 6]
 ```
+
 # Array(6)
 
 ```ruby
@@ -232,6 +238,7 @@ arr.map { |ele| p ele }
 arr.collect { |ele| p ele }
 #=> "dog" "cat" "bird"
 ```
+
 # Array(7)
 
 ```ruby
@@ -266,6 +273,7 @@ p arr_arr.assoc(2) #=> nil
 p arr_arr.rassoc(4) #=> [3, 4]
 p arr_arr.rassoc(3) #=> nil
 ```
+
 # Hash(1)
 
 ```ruby
@@ -290,6 +298,7 @@ p h2.shift #=> [:name, "John"]
 p h2.update({nationality: 'JP'}) #=> {:age=>50, :nationality=>"JP"}
 p h2.clear #=> {}
 ```
+
 # Hash(2)
 
 ```ruby
@@ -305,6 +314,7 @@ p hash.member?(:name) #=> true
 p hash.value?(24) #=> true
 p hash.has_value?(24) #=> true
 ```
+
 # Hash(3)
 
 ```ruby
@@ -329,6 +339,7 @@ p h7 = Hash.new { |hash, key| hash[key] = 'value'} #=> {}
 ## (4)
 p [['Name', 'K-Sato'], ['Age', 23]].to_h #=> {'Name'=>'K-Sato', 'Age'=>23}
 ```
+
 # Hash(4)
 
 ```ruby
@@ -347,6 +358,7 @@ hash.each_value { |value| p "#{value}" }
 #=>"K-Sato"
 #=>"24"
 ```
+
 # Hash(5)
 
 ```ruby
@@ -366,6 +378,7 @@ p h2.find_all { |key, value| key == :name } #=> [[:name, "K-Sato"]] # It returns
 p h1.select { |key, value| key == 'key1' } #=> {}
 p h1.find_all { |key, value| key == 'key1' }  #=> []
 ```
+
 # Hash(6)
 
 ```ruby
@@ -375,6 +388,7 @@ hash = { num2: 5, num1: 2, num3: 3 }
 # Uses keys to sort a hash
 p hash.sort #=> [[:num1, 2], [:num2, 5], [:num3, 3]]
 ```
+
 # String(1)
 
 ```ruby
@@ -422,6 +436,7 @@ p str.equal?(str2) #=> false # It checks the encoding of the strings.
 p str === str2 #=> true
 p str.eql?(str2) #=> true
 ```
+
 # String(2)
 
 ```ruby
@@ -436,6 +451,7 @@ str.encode('EUC-JP')
 str.encode!('EUC-JP')
 p str.encoding #=> #<Encoding:EUC-JP>
 ```
+
 # String(3)
 
 ```ruby
@@ -475,6 +491,7 @@ p str2 #=> "ABdefg"
 p str2.insert(-1, 'G') #=> "ABdefgG"
 p str2 #=> "ABdefgG"
 ```
+
 # String(4)
 
 ```ruby
@@ -516,6 +533,7 @@ str6 = 'abc'
 p str6.replace('ABC') #=> "ABC"
 p str6 #=> "ABC"
 ```
+
 # String(5)
 
 ```ruby
@@ -614,6 +632,7 @@ str4 = "string\n\t"
 puts str4 #=> string
 puts str4.dump #=> "string\n\t"
 ```
+
 # String(6)
 
 ```ruby
@@ -676,6 +695,7 @@ p str.chars #=> ["s", "t", "\n", "r", "i", "n", "g", "\n", "b", "u", "i", "l", "
 #   b
 #   c
 ```
+
 # String(7)
 
 ```ruby
@@ -707,6 +727,7 @@ p str2.to_sym #=> :string
 p str.intern #=> :"10"
 p str2.intern #=> :string
 ```
+
 # variables(1)
 
 ```ruby
