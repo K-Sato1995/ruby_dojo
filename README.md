@@ -1,5 +1,94 @@
 # Ruby Dojo
 
+# File(1) Class methods
+
+```ruby
+# .absolute_path (Show the absolute path of the file)
+p File.absolute_path('test.txt') #=> "/Users/k-sato/Desktop/Ruby/ruby_dojo/DirFile/File/test.txt"
+
+# .basename (Get the filename of the file)
+p File.basename('test.txt') #=> "test.txt"
+### if you don't need the file extension.
+p File.basename('test.txt', '.txt') #=> "test"
+
+# .delete (Delete the file)
+# p File.delete('test.txt')
+
+# .directory? (Check if it is a directory or not)
+p File.directory?('test.txt') #=. false
+p File.directory?(Dir.pwd) #=> true
+
+# .new .open (Open the file with an option)
+# "r"  |  Read-only, starts at beginning of file  (default mode).
+# "r+" |  Read-write, starts at beginning of file.
+# "w"  |  Write-only, truncates existing file to zero length or creates a new file for writing.
+# "w+" |  Read-write, truncates existing file to zero length or creates a new file for reading and writing.
+# "a"  |  Write-only, starts at end of file if file exists, otherwise creates a new file for writing.
+# "a+" |  Read-write, starts at end of file if file exists otherwise creates a new file for reading and writing.
+p file = File.open('test.txt', 'r') #=> #<File:test.txt>
+
+# extname
+p File.extname('test.txt') #=> ".txt"
+
+# exist? (Return true if the named file exists.)
+p File.exist?('test.txt') #=> true
+
+# expand_path (Converts a pathname to an absolute pathname)
+p File.expand_path('test.txt') #=> "/Users/k-sato/Desktop/Ruby/ruby_dojo/DirFile/File/test.txt"
+
+# dirname
+p File.dirname('test.txt') #=> "Returns all components of the filename given in file_name"
+```
+
+# File(2) Instance methods
+
+```ruby
+file = File.open('test.txt', 'r')
+# Open options
+# "r"  |  Read-only, starts at beginning of file  (default mode).
+# "r+" |  Read-write, starts at beginning of file.
+# "w"  |  Write-only, truncates existing file to zero length or creates a new file for writing.
+# "w+" |  Read-write, truncates existing file to zero length or creates a new file for reading and writing.
+# "a"  |  Write-only, starts at end of file if file exists, otherwise creates a new file for writing.
+# "a+" |  Read-write, starts at end of file if file exists otherwise creates a new file for reading and writing.
+
+### Reading
+# read (Read all the content of the file and return it as a string)
+p file.read #=> "test\ntest1\ntest2\n"
+p file.read #=> ""
+
+# rewind (Rewind to the top of the file)
+p file.rewind #=> 0
+
+# readline (Read the first line of the file and return it as a string)
+p file.readline #=> "test\n"
+file.rewind
+
+# readlines (Read all the content of the file and return it as an array)
+p file.readlines #=> ["test\n", "test1\n", "test2\n"]
+
+
+### Writing
+file2 = File.open('test2.txt', 'w+')
+
+# puts (Add /n at the end of the line)
+file2.puts 'first line'
+
+# write (Does not add /n at the end of the line)
+file2.write 'second'
+file2.write ' line'
+file2.rewind
+p file2.readlines #=> ["first line\n", "second line"]
+
+# time
+# atime: Returns the last access time
+# ctime: Returns the change time for file
+# mtime: Returns the modification time for file.
+p file2.ctime #=> 2019-01-08 14:06:09 +0900
+p file2.atime #=> 2019-01-08 14:06:09 +0900
+p file2.mtime #=> 2019-01-08 14:06:09 +0900
+```
+
 # Hash(1) Instantiation
 
 ```ruby
@@ -397,6 +486,66 @@ arr3.each_cons(2){|arr| p arr}
 # But it can start with _(underbar)
 _1 = 'A local variable can start with _'
 p _1 #=> 'A local variable can start with _'
+```
+
+# Dir(1) Class methods
+
+```ruby
+# .pwd (Show Present Working Directory)
+p Dir.pwd #=> "/Users/k-sato/Desktop/Ruby/ruby_dojo/DirFile"
+
+# .chdir (Change directory)
+p Dir.chdir("/Users/k-sato/Desktop/Ruby/ruby_dojo/Hash") #=> 0
+p Dir.pwd #=> "/Users/k-sato/Desktop/Ruby/ruby_dojo/Hash"
+p Dir.chdir("/Users/k-sato/Desktop/Ruby/ruby_dojo/DirFile/Dir")  #=> 0
+
+# .glob (Get certain files)
+text_files = Dir.glob("*.txt")
+p text_files #=> ["test2.txt", "test.txt"]
+
+Dir.glob("*.txt") do |file|
+  p file
+  #=> "test2.txt"
+  #=> "test.txt"
+end
+
+# .new .open (return a Dir object)
+pwd = Dir.pwd
+p Dir.open(pwd) #=> #<Dir:/Users/k-sato/Desktop/Ruby/ruby_dojo/DirFile>
+p Dir.new(pwd) #=> #<Dir:/Users/k-sato/Desktop/Ruby/ruby_dojo/DirFile>
+
+# exist? (Returns true if the named file is a directory, false otherwise.)
+p Dir.exist?('test.txt') #=> false # it is a file not a directory
+p Dir.exist?(pwd) #=> true
+
+# .entries (Check what's inside of the dir object)
+p Dir.entries(pwd) #=> [".", "..", "class_methods.rb", "test2.txt", "instance_methods.rb", "test.txt"]
+```
+
+# Dir(2) Instance methods
+
+```ruby
+pwd = Dir.pwd
+dir = Dir.new(pwd)
+
+# #each (Iterate over each file or directory that is inside the dir object)
+dir.each do |dir_or_file|
+  p dir_or_file
+  # NOTE: The returned values here are all string type not file or dir.
+  #=> "."
+  #=> ".."
+  #=>"class_methods.rb"
+  #=>"test2.txt"
+  #=>"instance_methods.rb"
+  #=>"test.txt"
+end
+
+# #entries (Check what's inside of the dir object)
+p dir.entries #=> [".", "..", "class_methods.rb", "test2.txt", "instance_methods.rb", "test.txt"]
+
+# #close (Closes the directory stream. Any further attempts to access dir will raise an IOError.)
+p dir.close #=> nil
+p dir.entries #=> (IOError)
 ```
 
 # String(1) Operation3
