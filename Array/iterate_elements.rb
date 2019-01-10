@@ -30,3 +30,22 @@ arr.map { |ele| p ele }
 # collect
 arr.collect { |ele| p ele }
 #=> "dog" "cat" "bird"
+
+# reverse_each
+arr.reverse_each { |ele| p ele }
+#=> "bird" "cat" "dog"
+
+arr2 = [1,2,3,4,5]
+
+# each_slice
+arr2.each_slice(2){|arr| p arr}
+#=> [1, 2]
+#=> [3, 4]
+#=> [5]
+
+# each_cons
+arr2.each_cons(2){|arr| p arr}
+#=> [1, 2]
+#=> [2, 3]
+#=> [3, 4]
+#=> [4, 5]

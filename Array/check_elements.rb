@@ -3,6 +3,7 @@ arr = ['dog', 'cat', 'bird']
 
 # include?
 p arr.include?('dog') #=> true
+p arr.member?('dog') #=> true
 
 # size
 p arr.size #=> 3
@@ -32,3 +33,19 @@ p [1,2] == [1,2] #=> true
 # <=>
 p [1,2] <=> [2,3] #=> -1
 p [2,3] <=> [1,2] #=> 1
+
+# all?
+p arr.all? #=> true
+p [1,nil,2].all? #=> false
+
+# any?
+p arr.any? #=> true
+p [].any? #=> false
+
+# one?
+p arr.one? #=> false
+p [1].one? #=> true
+
+# none?
+p arr.none? #=> false
+p [].none? #=> true
