@@ -17,6 +17,7 @@ Dir.open(Dir.pwd).each do |dir|
       open('README.md', 'a') do |f|
         f.puts "- [#{dir}(#{num}) #{file_name.capitalize}](##{dir.downcase}#{num}-#{file_name.split(' ').join('-')})"
       end
+      num += 1
     end
   end
 end
