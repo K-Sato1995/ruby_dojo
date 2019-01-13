@@ -1,5 +1,32 @@
 # Ruby Dojo
 
+# Table of contents
+- [Array(1) Add elements](#array1-add-elements)
+- [Array(1) Change elements](#array1-change-elements)
+- [Array(1) Check elements](#array1-check-elements)
+- [Array(1) Delete elements](#array1-delete-elements)
+- [Array(1) Instantiation](#array1-instantiation)
+- [Array(1) Iterate elements](#array1-iterate-elements)
+- [Array(1) Reference elements](#array1-reference-elements)
+- [Dir(1) Class methods](#dir1-class-methods)
+- [Dir(1) Instance methods](#dir1-instance-methods)
+- [File(1) Class methods](#file1-class-methods)
+- [File(1) Instance methods](#file1-instance-methods)
+- [Hash(1) Data change](#hash1-data-change)
+- [Hash(1) Inspection](#hash1-inspection)
+- [Hash(1) Instantiation](#hash1-instantiation)
+- [Hash(1) Iteration](#hash1-iteration)
+- [Hash(1) Keys values](#hash1-keys-values)
+- [Hash(1) Sort](#hash1-sort)
+- [String(1) Change class](#string1-change-class)
+- [String(1) Change string](#string1-change-string)
+- [String(1) Comparison](#string1-comparison)
+- [String(1) Encoding](#string1-encoding)
+- [String(1) Iterate string](#string1-iterate-string)
+- [String(1) Reference string](#string1-reference-string)
+- [String(1) Replace string](#string1-replace-string)
+- [String(1) Search string](#string1-search-string)
+- [Variables(1) Variables](#variables1-variables)
 # Array(1) Add elements
 
 ```ruby
