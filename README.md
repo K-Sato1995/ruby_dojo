@@ -634,152 +634,39 @@ hash = { num2: 5, num1: 2, num3: 3 }
 p hash.sort #=> [[:num1, 2], [:num2, 5], [:num3, 3]]
 ```
 
-# String(1) Comparison
+# String(1) Change class
 
 ```ruby
-# Encoding
-
-## Basic
-str = 'string'
-p str.encoding #=> #<Encoding:UTF-8>
-
-## How to change an encoding
-str.encode('EUC-JP')
-str.encode!('EUC-JP')
-p str.encoding #=> #<Encoding:EUC-JP>
-
-## Comparison of strings
-=begin
-Ruby uses aisc code to compare two strings'
-=end
-
-### >, <, <=, >=
-p 'a' < 'b' #=> true
-p 'b' > 'a' #=> true
-
-=begin
- The <=> and casecmp return 1 if the string on the right hand is bigger than the one on the left.
- They return -1 if the one on the right is smaller. They return 0 if 2 strings are equal.
- The <=> method is case sensetive and The casecmp method isn't.
-=end
-p 'a' <=> 'b' #=> -1
-p 'b' <=> 'a' #=> 1
-p 'a' <=> 'a' #=> 0
-p 'a' <=> 'A' #=> 1
-p 'a'.casecmp('b') #=> -1
-p 'b'.casecmp('a') #=> 1
-p 'b'.casecmp('b') #=> 0
-p 'a'.casecmp('A') #=> 0
-
-### ==. ===
+# Changing a string to another object
+str = '10'
 str2 = 'string'
-p str.encoding
-p str2.encoding
-p str == str2 #=> true
-p str.equal?(str2) #=> false # It checks the encoding of the strings.
 
-p str === str2 #=> true
-p str.eql?(str2) #=> true
+## to_i, to_f
+p str.to_i #=> 10
+p str.to_f #=> 10.0
+
+p str2.to_i #=> 0
+p str2.to_f #=> 0
+
+## hex, oct
+p str.hex #=> 16
+p str2.hex #=> 0
+
+p str.oct #=> 8
+p str2.oct #=> 0
+
+## to_str, to_s
+p str.to_str #=> "10"
+
+## to_sym, intern
+p str.to_sym #=> :"10"
+p str2.to_sym #=> :string
+
+p str.intern #=> :"10"
+p str2.intern #=> :string
 ```
 
-# String(2) Encoding
-
-```ruby
-# Encoding
-
-## Basic
-str = 'string'
-p str.encoding #=> #<Encoding:UTF-8>
-
-## How to change an encoding
-str.encode('EUC-JP')
-str.encode!('EUC-JP')
-p str.encoding #=> #<Encoding:EUC-JP>
-```
-
-# String(3) Operation
-
-```ruby
-str = 'abcdefg'
-
-## split
-p str.split('d') #=> ["abc", "efg"]
-p str.split(/d/) #=> ["abc", "efg"]
-p str #=> "abcdefg"
-
-## slice
-p str.slice('a') #=> "a"
-p str #=> "abcdefg"
-p str.slice!('a') #=> "a" # Bang Method
-p str #=> "bcdefg"
-p str.slice(0..3) #=> "bcde"
-
-## []
-p str[0] #=> "b"
-p str[0..2] #=> "bcd"
-p str[0...2] #=> "bc"
-p str[-2] #=> "f"
-p str[0..-2] #=> "bcdef"
-p str[1, 3] #=> "cde"
-p str[-2, 3] #=> "fg" #Return till the last letter.
-p str['bc'] #=> "bc"
-p str['hi'] #=> nil
-p str[/bc/] #=> "bc"
-p str[/.+e/] #=> "bcde"
-
-## []=, insert (Bang Methods)
-str2 = 'abcdefg'
-p str2[0] = 'A' #=> "A"
-p str2 #=> "Abcdefg"
-p str2[0..2] = 'AB' #=> "AB"
-p str2 #=> "ABdefg"
-p str2.insert(-1, 'G') #=> "ABdefgG"
-p str2 #=> "ABdefgG"
-```
-
-# String(4) Operation2
-
-```ruby
-# Replacing strings
-## sub
-str = 'abcdefg'
-p str.sub(/abc/, 'ABC') #=> "ABCdefg"
-p str #=> "abcdefg"
-p str.sub!(/abc/, 'ABC') #=> "ABCdefg"
-p str #=> "ABCdefg"
-
-## gsub
-str2 = 'aabbcc'
-p str2.gsub(/a/, 'A') #=> "AAbbcc"
-
-## tr
-str3 = 'aabcdefg'
-p str3.tr('a-g', 'A-G') #=> "AABCDEFG"
-
-## tr_s
-p str3.tr_s('a-g', 'A-G') #=> "ABCDEFG"
-p str3 #=> "aabcdefg"
-
-## delete
-str4 = 'aabbccdefg'
-p str4.delete('a-c') #=> "defg"
-p str4 #=> 'aabbccdefg'
-p str4.delete('a') #=> "bbccdefg"
-p str4.delete('a-b', 'a-f') #=> "ccdefg" # delete letters that match all the given conditions (patterns) as parameters.
-
-## squeeze
-str5 = 'aabbccee'
-p str5.squeeze #=> "abce"
-p str5.squeeze('a-b') #=> "abccee"
-p str5 #=> "aabbccee"
-
-## replace (Bang Method)
-str6 = 'abc'
-p str6.replace('ABC') #=> "ABC"
-p str6 #=> "ABC"
-```
-
-# String(5) Operation3
+# String(2) Change string
 
 ```ruby
 # Connecting two strings
@@ -878,7 +765,184 @@ puts str4 #=> string
 puts str4.dump #=> "string\n\t"
 ```
 
-# String(6) Operation4
+# String(3) Comparison
+
+```ruby
+# Encoding
+
+## Basic
+str = 'string'
+p str.encoding #=> #<Encoding:UTF-8>
+
+## How to change an encoding
+str.encode('EUC-JP')
+str.encode!('EUC-JP')
+p str.encoding #=> #<Encoding:EUC-JP>
+
+## Comparison of strings
+=begin
+Ruby uses aisc code to compare two strings'
+=end
+
+### >, <, <=, >=
+p 'a' < 'b' #=> true
+p 'b' > 'a' #=> true
+
+=begin
+ The <=> and casecmp return 1 if the string on the right hand is bigger than the one on the left.
+ They return -1 if the one on the right is smaller. They return 0 if 2 strings are equal.
+ The <=> method is case sensetive and The casecmp method isn't.
+=end
+p 'a' <=> 'b' #=> -1
+p 'b' <=> 'a' #=> 1
+p 'a' <=> 'a' #=> 0
+p 'a' <=> 'A' #=> 1
+p 'a'.casecmp('b') #=> -1
+p 'b'.casecmp('a') #=> 1
+p 'b'.casecmp('b') #=> 0
+p 'a'.casecmp('A') #=> 0
+
+### ==. ===
+str2 = 'string'
+p str.encoding
+p str2.encoding
+p str == str2 #=> true
+p str.equal?(str2) #=> false # It checks the encoding of the strings.
+
+p str === str2 #=> true
+p str.eql?(str2) #=> true
+```
+
+# String(4) Encoding
+
+```ruby
+# Encoding
+
+## Basic
+str = 'string'
+p str.encoding #=> #<Encoding:UTF-8>
+
+## How to change an encoding
+str.encode('EUC-JP')
+str.encode!('EUC-JP')
+p str.encoding #=> #<Encoding:EUC-JP>
+```
+
+# String(5) Iterate string
+
+```ruby
+# Iteration of a string
+str = "st\nring\nbuilt"
+
+## each_line, lines
+str.each_line { |a| puts a }
+str.lines { |a| puts a }
+#=> st
+#   ring
+#   built
+p str.each_line #=> #<Enumerator: "st\nring\nbuilt":each_line>
+p str.lines #=> ["st\n", "ring\n", "built"]
+
+## each_byte, bytes
+str.each_byte { |a| puts a }
+p str.each_byte #=> #<Enumerator: "st\nring\nbuilt":each_byte>
+p str.bytes #=> [115, 116, 10, 114, 105, 110, 103, 10, 98, 117, 105, 108, 116]
+
+## each_char
+str.each_char { |a| puts a }
+p str.each_char #=> #<Enumerator: "st\nring\nbuilt":each_char>
+p str.chars #=> ["s", "t", "\n", "r", "i", "n", "g", "\n", "b", "u", "i", "l", "t"]
+
+## upto
+'a'.upto('c') { |a| puts a }
+#=> a
+#   b
+#   c
+```
+
+# String(6) Reference string
+
+```ruby
+str = 'abcdefg'
+
+## split
+p str.split('d') #=> ["abc", "efg"]
+p str.split(/d/) #=> ["abc", "efg"]
+p str #=> "abcdefg"
+
+## slice
+p str.slice('a') #=> "a"
+p str #=> "abcdefg"
+p str.slice!('a') #=> "a" # Bang Method
+p str #=> "bcdefg"
+p str.slice(0..3) #=> "bcde"
+
+## []
+p str[0] #=> "b"
+p str[0..2] #=> "bcd"
+p str[0...2] #=> "bc"
+p str[-2] #=> "f"
+p str[0..-2] #=> "bcdef"
+p str[1, 3] #=> "cde"
+p str[-2, 3] #=> "fg" #Return till the last letter.
+p str['bc'] #=> "bc"
+p str['hi'] #=> nil
+p str[/bc/] #=> "bc"
+p str[/.+e/] #=> "bcde"
+
+## []=, insert (Bang Methods)
+str2 = 'abcdefg'
+p str2[0] = 'A' #=> "A"
+p str2 #=> "Abcdefg"
+p str2[0..2] = 'AB' #=> "AB"
+p str2 #=> "ABdefg"
+p str2.insert(-1, 'G') #=> "ABdefgG"
+p str2 #=> "ABdefgG"
+```
+
+# String(7) Replace string
+
+```ruby
+# Replacing strings
+## sub
+str = 'abcdefg'
+p str.sub(/abc/, 'ABC') #=> "ABCdefg"
+p str #=> "abcdefg"
+p str.sub!(/abc/, 'ABC') #=> "ABCdefg"
+p str #=> "ABCdefg"
+
+## gsub
+str2 = 'aabbcc'
+p str2.gsub(/a/, 'A') #=> "AAbbcc"
+
+## tr
+str3 = 'aabcdefg'
+p str3.tr('a-g', 'A-G') #=> "AABCDEFG"
+
+## tr_s
+p str3.tr_s('a-g', 'A-G') #=> "ABCDEFG"
+p str3 #=> "aabcdefg"
+
+## delete
+str4 = 'aabbccdefg'
+p str4.delete('a-c') #=> "defg"
+p str4 #=> 'aabbccdefg'
+p str4.delete('a') #=> "bbccdefg"
+p str4.delete('a-b', 'a-f') #=> "ccdefg" # delete letters that match all the given conditions (patterns) as parameters.
+
+## squeeze
+str5 = 'aabbccee'
+p str5.squeeze #=> "abce"
+p str5.squeeze('a-b') #=> "abccee"
+p str5 #=> "aabbccee"
+
+## replace (Bang Method)
+str6 = 'abc'
+p str6.replace('ABC') #=> "ABC"
+p str6 #=> "ABC"
+```
+
+# String(8) Search string
 
 ```ruby
 # Searching strings
@@ -911,66 +975,6 @@ p str3.succ #=> "ab13"
 ## next
 p str2.next #=> "abd"
 p str3.next #=> "ab13"
-
-# Iteration of a string
-str = "st\nring\nbuilt"
-
-## each_line, lines
-str.each_line { |a| puts a }
-str.lines { |a| puts a }
-#=> st
-#   ring
-#   built
-p str.each_line #=> #<Enumerator: "st\nring\nbuilt":each_line>
-p str.lines #=> ["st\n", "ring\n", "built"]
-
-## each_byte, bytes
-str.each_byte { |a| puts a }
-p str.each_byte #=> #<Enumerator: "st\nring\nbuilt":each_byte>
-p str.bytes #=> [115, 116, 10, 114, 105, 110, 103, 10, 98, 117, 105, 108, 116]
-
-## each_char
-str.each_char { |a| puts a }
-p str.each_char #=> #<Enumerator: "st\nring\nbuilt":each_char>
-p str.chars #=> ["s", "t", "\n", "r", "i", "n", "g", "\n", "b", "u", "i", "l", "t"]
-
-## upto
-'a'.upto('c') { |a| puts a }
-#=> a
-#   b
-#   c
-```
-
-# String(7) Operation5
-
-```ruby
-# Changing a string to another object
-str = '10'
-str2 = 'string'
-
-## to_i, to_f
-p str.to_i #=> 10
-p str.to_f #=> 10.0
-
-p str2.to_i #=> 0
-p str2.to_f #=> 0
-
-## hex, oct
-p str.hex #=> 16
-p str2.hex #=> 0
-
-p str.oct #=> 8
-p str2.oct #=> 0
-
-## to_str, to_s
-p str.to_str #=> "10"
-
-## to_sym, intern
-p str.to_sym #=> :"10"
-p str2.to_sym #=> :string
-
-p str.intern #=> :"10"
-p str2.intern #=> :string
 ```
 
 # Variables(1) Variables
