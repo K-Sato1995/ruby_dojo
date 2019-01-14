@@ -2,7 +2,7 @@
 arr = ['dog', 'cat', 'pig']
 
 # []
-p arr[0] = 'Dog' #Bang Method
+p arr[0] = 'Dog' # Bang Method
 p arr #=> ["Dog", "cat", "pig"]
 
 # fill
@@ -17,7 +17,7 @@ p [[:name, 'k-sato'], [:age, 23]].to_h #=> {:name=>"k-sato", :age=>23}
 # join
 p arr.join('-') #=> "1-2-3"
 
-arr2 = [3,2,1,3,2,1]
+arr2 = [3, 2, 1, 3, 2, 1]
 
 # uniq
 p arr2.uniq #=> [3, 2, 1]
@@ -35,22 +35,22 @@ p [[1,2], [3,4]].flatten #=> [1, 2, 3, 4]
 # shuffle
 p arr2.shuffle
 
-arr3 = [1,2]
+arr3 = [1, 2]
 
 # product
-p arr3.product([3,4]) #=> [[1, 3], [1, 4], [2, 3], [2, 4]]
+p arr3.product([3, 4]) #=> [[1, 3], [1, 4], [2, 3], [2, 4]]
 
 # zip
-p arr3.zip([3,4]) #=> [[1, 3], [2, 4]]
+p arr3.zip([3, 4]) #=> [[1, 3], [2, 4]]
 
 # *
-p arr3*2 #=> [1, 2, 1, 2]
+p arr3 * 2 #=> [1, 2, 1, 2]
 
 # transpose
-p [[1,2,3],[4,5,6]].transpose #=> [[1, 4], [2, 5], [3, 6]]
+p [[1, 2, 3], [4, 5, 6]].transpose #=> [[1, 4], [2, 5], [3, 6]]
 
 
-arr4 = [2,3,5,4,6,6,7,8,10]
+arr4 = [2, 3, 5, 4, 6, 6, 7, 8, 10]
 arr5 = ['Doggy', 'Dog', 'Puppy']
 
 # sort

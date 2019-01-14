@@ -62,7 +62,7 @@ p array + [10]
 arr = ['dog', 'cat', 'pig']
 
 # []
-p arr[0] = 'Dog' #Bang Method
+p arr[0] = 'Dog' # Bang Method
 p arr #=> ["Dog", "cat", "pig"]
 
 # fill
@@ -77,7 +77,7 @@ p [[:name, 'k-sato'], [:age, 23]].to_h #=> {:name=>"k-sato", :age=>23}
 # join
 p arr.join('-') #=> "1-2-3"
 
-arr2 = [3,2,1,3,2,1]
+arr2 = [3, 2, 1, 3, 2, 1]
 
 # uniq
 p arr2.uniq #=> [3, 2, 1]
@@ -95,22 +95,22 @@ p [[1,2], [3,4]].flatten #=> [1, 2, 3, 4]
 # shuffle
 p arr2.shuffle
 
-arr3 = [1,2]
+arr3 = [1, 2]
 
 # product
-p arr3.product([3,4]) #=> [[1, 3], [1, 4], [2, 3], [2, 4]]
+p arr3.product([3, 4]) #=> [[1, 3], [1, 4], [2, 3], [2, 4]]
 
 # zip
-p arr3.zip([3,4]) #=> [[1, 3], [2, 4]]
+p arr3.zip([3, 4]) #=> [[1, 3], [2, 4]]
 
 # *
-p arr3*2 #=> [1, 2, 1, 2]
+p arr3 * 2 #=> [1, 2, 1, 2]
 
 # transpose
-p [[1,2,3],[4,5,6]].transpose #=> [[1, 4], [2, 5], [3, 6]]
+p [[1, 2, 3], [4, 5, 6]].transpose #=> [[1, 4], [2, 5], [3, 6]]
 
 
-arr4 = [2,3,5,4,6,6,7,8,10]
+arr4 = [2, 3, 5, 4, 6, 6, 7, 8, 10]
 arr5 = ['Doggy', 'Dog', 'Puppy']
 
 # sort
@@ -209,7 +209,7 @@ p arr #=> [1]
 p arr.clear #=> []
 p arr #=> []
 
-arr2 = [1,2,3,4,5]
+arr2 = [1, 2, 3, 4, 5]
 # (5) shift
 p arr2.shift #=> 1
 p arr2 #=> [2, 3, 4, 5]
@@ -220,28 +220,28 @@ p arr2 #=> [2, 3, 4]
 
 
 ### Non Bang Methods (can be a bang method with !)
-arr3 = [1,2,3,4,5]
+arr3 = [1, 2, 3, 4, 5]
 
 # (1) reject
 p arr3.reject{ |ele| ele%2 == 0 } #=> [1, 3, 5]
 p arr3 #=> [1, 2, 3, 4, 5]
 
 # (2) slice
-p arr3.slice(1,3) #=> [2, 3, 4]
+p arr3.slice(1, 3) #=> [2, 3, 4]
 p arr3 #=> [1, 2, 3, 4, 5]
 
 # (3) -
-p arr3 - [1,2] #=> [3, 4, 5]
+p arr3 - [1, 2] #=> [3, 4, 5]
 p arr3 #=> [1, 2, 3, 4, 5]
 
 # (4) each_slice
-arr3.each_slice(2){|arr| p arr}
+arr3.each_slice(2) { |arr| p arr }
 #=> [1, 2]
 #=> [3, 4]
 #=> [5]
 
 # (5) each_cons
-arr3.each_cons(2){|arr| p arr}
+arr3.each_cons(2) { |arr| p arr }
 #=> [1, 2]
 #=> [2, 3]
 #=> [3, 4]
@@ -1013,3 +1013,4 @@ p str3.next #=> "ab13"
 _1 = 'A local variable can start with _'
 p _1 #=> 'A local variable can start with _'
 ```
+

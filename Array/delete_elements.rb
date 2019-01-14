@@ -17,7 +17,7 @@ p arr #=> [1]
 p arr.clear #=> []
 p arr #=> []
 
-arr2 = [1,2,3,4,5]
+arr2 = [1, 2, 3, 4, 5]
 # (5) shift
 p arr2.shift #=> 1
 p arr2 #=> [2, 3, 4, 5]
@@ -28,28 +28,28 @@ p arr2 #=> [2, 3, 4]
 
 
 ### Non Bang Methods (can be a bang method with !)
-arr3 = [1,2,3,4,5]
+arr3 = [1, 2, 3, 4, 5]
 
 # (1) reject
 p arr3.reject{ |ele| ele%2 == 0 } #=> [1, 3, 5]
 p arr3 #=> [1, 2, 3, 4, 5]
 
 # (2) slice
-p arr3.slice(1,3) #=> [2, 3, 4]
+p arr3.slice(1, 3) #=> [2, 3, 4]
 p arr3 #=> [1, 2, 3, 4, 5]
 
 # (3) -
-p arr3 - [1,2] #=> [3, 4, 5]
+p arr3 - [1, 2] #=> [3, 4, 5]
 p arr3 #=> [1, 2, 3, 4, 5]
 
 # (4) each_slice
-arr3.each_slice(2){|arr| p arr}
+arr3.each_slice(2) { |arr| p arr }
 #=> [1, 2]
 #=> [3, 4]
 #=> [5]
 
 # (5) each_cons
-arr3.each_cons(2){|arr| p arr}
+arr3.each_cons(2) { |arr| p arr }
 #=> [1, 2]
 #=> [2, 3]
 #=> [3, 4]
