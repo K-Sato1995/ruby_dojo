@@ -37,15 +37,21 @@ p [2,3] <=> [1,2] #=> 1
 # all?
 p arr.all? #=> true
 p [1,nil,2].all? #=> false
+words1 = ["dog", "cat", "mouse", "pig"]
+puts words1.all? {|w| w.kind_of?(String) } #=> true
 
 # any?
 p arr.any? #=> true
 p [].any? #=> false
+words1 = ["dog", "cat", "mouse", "pig"]
+puts words1.any? {|w| w.size > 10 } #=> false
 
 # one?
 p arr.one? #=> false
 p [1].one? #=> true
+puts words1.any? {|w| w.size > 3 } #=> true
 
 # none?
 p arr.none? #=> false
-p [].none? #=> true
+p [nil, nil].none? #=> true
+puts words1.none? {|w| w.size > 10 } #=> true

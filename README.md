@@ -173,18 +173,24 @@ p [2,3] <=> [1,2] #=> 1
 # all?
 p arr.all? #=> true
 p [1,nil,2].all? #=> false
+words1 = ["dog", "cat", "mouse", "pig"]
+puts words1.all? {|w| w.kind_of?(String) } #=> true
 
 # any?
 p arr.any? #=> true
 p [].any? #=> false
+words1 = ["dog", "cat", "mouse", "pig"]
+puts words1.any? {|w| w.size > 10 } #=> false
 
 # one?
 p arr.one? #=> false
 p [1].one? #=> true
+puts words1.any? {|w| w.size > 3 } #=> true
 
 # none?
 p arr.none? #=> false
-p [].none? #=> true
+p [nil, nil].none? #=> true
+puts words1.none? {|w| w.size > 10 } #=> true
 ```
 
 # Array(4) Delete elements
@@ -295,11 +301,11 @@ arr.reverse_each { |ele| p ele }
 #=> "bird" "cat" "dog"
 
 # each_with_index
-arr.each_with_index { |ele, i| p "#{i}#{ele}"}
+arr.each_with_index { |ele, i| p "#{i}#{ele}" }
 #=> "0dog" "1cat" "2bird"
 
 # each.with_index()
-arr.each.with_index(1) { |ele, i| p "#{i}#{ele}"}
+arr.each.with_index(1) { |ele, i| p "#{i}#{ele}" }
 #=> "1dog" "2cat" "3bird"
 
 # map
@@ -317,13 +323,13 @@ arr.reverse_each { |ele| p ele }
 arr2 = [1,2,3,4,5]
 
 # each_slice
-arr2.each_slice(2){|arr| p arr}
+arr2.each_slice(2){ |arr| p arr }
 #=> [1, 2]
 #=> [3, 4]
 #=> [5]
 
 # each_cons
-arr2.each_cons(2){|arr| p arr}
+arr2.each_cons(2){ |arr| p arr }
 #=> [1, 2]
 #=> [2, 3]
 #=> [3, 4]
