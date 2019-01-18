@@ -334,6 +334,15 @@ arr2.each_cons(2){ |arr| p arr }
 #=> [2, 3]
 #=> [3, 4]
 #=> [4, 5]
+
+# https://ruby-doc.org/core-2.2.0/Enumerable.html#method-i-inject
+# inject / reduce
+p (5..10).inject { |sum, n| sum + n } #=> 45
+p (5..10).reduce { |sum, n| sum + n } #=> 45
+longest = %w{ cat sheep bear }.inject do |memo, word|
+   memo.length > word.length ? memo : word
+end
+p longest #=> "sheep"
 ```
 
 # Array(7) Reference elements
