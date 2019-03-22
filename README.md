@@ -18,6 +18,11 @@
 - [Hash(4) Iteration](#hash4-iteration)
 - [Hash(5) Keys values](#hash5-keys-values)
 - [Hash(6) Sort](#hash6-sort)
+- [RefactoringGuide(1) Extract method](#refactoringguide1-extract-method)
+- [RefactoringGuide(2) Extract variable](#refactoringguide2-extract-variable)
+- [RefactoringGuide(3) Inline method](#refactoringguide3-inline-method)
+- [RefactoringGuide(4) Refactoring conditionals](#refactoringguide4-refactoring-conditionals)
+- [RefactoringGuide(5) Use default_value](#refactoringguide5-use-default_value)
 - [String(1) Change class](#string1-change-class)
 - [String(2) Change string](#string2-change-string)
 - [String(3) Comparison](#string3-comparison)
@@ -340,7 +345,7 @@ arr2.each_cons(2){ |arr| p arr }
 p (5..10).inject { |sum, n| sum + n } #=> 45
 p (5..10).reduce { |sum, n| sum + n } #=> 45
 longest = %w{ cat sheep bear }.inject do |memo, word|
-   memo.length > word.length ? memo : word
+  memo.length > word.length ? memo : word
 end
 p longest #=> "sheep"
 ```
@@ -674,6 +679,118 @@ hash = { num2: 5, num1: 2, num3: 3 }
 
 # Uses keys to sort a hash
 p hash.sort #=> [[:num1, 2], [:num2, 5], [:num3, 3]]
+```
+
+# RefactoringGuide(1) Extract method
+
+```ruby
+# Extract Method
+
+## Before
+def report
+  sold_items = %w[apples lemons grapes]
+  puts "*** Sales Report for #{Time.now.strftime("%d/%m/%Y")} ***"
+  sold_items.each { |i| puts i }
+  puts '*** End Of The Report ***'
+end
+
+## After
+def new_report
+  sold_items = %w[apples lemons grapes]
+  puts "*** Sales Report for #{current_date} ***"
+  print_items(sold_items)
+  puts '*** End Of The Report ***'
+end
+
+def current_date
+  Time.now.strftime("%d/%m/%Y")
+end
+
+def print_items(items)
+  items.each { |i| puts i }
+end
+```
+
+# RefactoringGuide(2) Extract variable
+
+```ruby
+## Before
+
+def yesterday
+  (Time.now - 86400).strftime("%d/%m/%Y")
+end
+
+## After
+def new_yesterday
+  one_day = 86400
+  (Time.now - one_day).strftime("%d/%m/%Y")
+end
+```
+
+# RefactoringGuide(3) Inline method
+
+```ruby
+## Before
+def result(score)
+  if check(score)
+    "Pass"
+  end
+end
+
+def check(score)
+  score > 70
+end
+
+## After
+def new_result(score)
+  if score > 70
+   "Pass"
+  end
+end
+```
+
+# RefactoringGuide(4) Refactoring conditionals
+
+```ruby
+## Before
+def check_working_hour
+  if Time.now.hour >= 9 && Time.now.hour <= 17
+    'You should be working.'
+  end
+end
+
+## After
+def new_check_working_hour
+  if working_hour?
+    'You should be working.'
+  end
+end
+
+def working_hour?
+  Time.now.hour >= 3 && Time.now.hour <= 17
+end
+```
+
+# RefactoringGuide(5) Use default_value
+
+```ruby
+## Before
+module TwoFer
+  def self.two_fer(name = '')
+    if name.empty?
+      'One for you, one for me.'
+    else
+      "One for #{name}, one for me."
+    end
+  end
+end
+
+## After
+module TwoFer
+  def self.two_fer(name = 'you')
+    "One for #{name}, one for me."
+  end
+end
 ```
 
 # String(1) Change class

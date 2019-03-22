@@ -55,6 +55,6 @@ arr2.each_cons(2){ |arr| p arr }
 p (5..10).inject { |sum, n| sum + n } #=> 45
 p (5..10).reduce { |sum, n| sum + n } #=> 45
 longest = %w{ cat sheep bear }.inject do |memo, word|
-   memo.length > word.length ? memo : word
+  memo.length > word.length ? memo : word
 end
 p longest #=> "sheep"
